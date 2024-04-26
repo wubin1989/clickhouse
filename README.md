@@ -59,13 +59,14 @@ func main() {
 package main
 
 import (
+  std_ck "github.com/ClickHouse/clickhouse-go/v2"
   "gorm.io/driver/clickhouse"
   "gorm.io/gorm"
 )
 
-sqlDB, err := clickhouse.OpenDB(&clickhouse.Options{
+sqlDB, err := std_ck.OpenDB(&std_ck.Options{
 	Addr: []string{"127.0.0.1:9999"},
-	Auth: clickhouse.Auth{
+	Auth: std_ck.Auth{
 		Database: "default",
 		Username: "default",
 		Password: "",
@@ -73,12 +74,12 @@ sqlDB, err := clickhouse.OpenDB(&clickhouse.Options{
 	TLS: &tls.Config{
 		InsecureSkipVerify: true,
 	},
-	Settings: clickhouse.Settings{
+	Settings: std_ck.Settings{
 		"max_execution_time": 60,
 	},
 	DialTimeout: 5 * time.Second,
-	Compression: &clickhouse.Compression{
-		clickhouse.CompressionLZ4,
+	Compression: &std_ck.Compression{
+		std_ck.CompressionLZ4,
 	},
 	Debug: true,
 })
