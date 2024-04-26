@@ -201,8 +201,13 @@ func (m Migrator) GetTables() (tableList []string, err error) {
 func (m Migrator) AddColumn(value interface{}, field string) error {
 	return m.RunWithValue(value, func(stmt *gorm.Statement) error {
 		if field := stmt.Schema.LookUpField(field); field != nil {
+			clusterOpts := ""
+			if clusterOption, ok := m.DB.Get("gorm:table_cluster_options"); ok {
+				clusterOpts = " " + fmt.Sprint(clusterOption) + " "
+			}
+			sQL := fmt.Sprintf("ALTER TABLE ? %s ADD COLUMN ? ?", clusterOpts)
 			return m.DB.Exec(
-				"ALTER TABLE ? ADD COLUMN ? ?",
+				sQL,
 				clause.Table{Name: stmt.Table}, clause.Column{Name: field.DBName},
 				m.FullDataTypeOf(field),
 			).Error
@@ -216,8 +221,13 @@ func (m Migrator) DropColumn(value interface{}, name string) error {
 		if field := stmt.Schema.LookUpField(name); field != nil {
 			name = field.DBName
 		}
+		clusterOpts := ""
+		if clusterOption, ok := m.DB.Get("gorm:table_cluster_options"); ok {
+			clusterOpts = " " + fmt.Sprint(clusterOption) + " "
+		}
+		sQL := fmt.Sprintf("ALTER TABLE ? %s DROP COLUMN ?", clusterOpts)
 		return m.DB.Exec(
-			"ALTER TABLE ? DROP COLUMN ?",
+			sQL,
 			clause.Table{Name: stmt.Table}, clause.Column{Name: name},
 		).Error
 	})
@@ -226,8 +236,13 @@ func (m Migrator) DropColumn(value interface{}, name string) error {
 func (m Migrator) AlterColumn(value interface{}, field string) error {
 	return m.RunWithValue(value, func(stmt *gorm.Statement) error {
 		if field := stmt.Schema.LookUpField(field); field != nil {
+			clusterOpts := ""
+			if clusterOption, ok := m.DB.Get("gorm:table_cluster_options"); ok {
+				clusterOpts = " " + fmt.Sprint(clusterOption) + " "
+			}
+			sQL := fmt.Sprintf("ALTER TABLE ? %s MODIFY COLUMN ? ?", clusterOpts)
 			return m.DB.Exec(
-				"ALTER TABLE ? MODIFY COLUMN ? ?",
+				sQL,
 				clause.Table{Name: stmt.Table},
 				clause.Column{Name: field.DBName},
 				m.FullDataTypeOf(field),
@@ -252,8 +267,13 @@ func (m Migrator) RenameColumn(value interface{}, oldName, newName string) error
 				field = f
 			}
 			if field != nil {
+				clusterOpts := ""
+				if clusterOption, ok := m.DB.Get("gorm:table_cluster_options"); ok {
+					clusterOpts = " " + fmt.Sprint(clusterOption) + " "
+				}
+				sQL := fmt.Sprintf("ALTER TABLE ? %s RENAME COLUMN ? TO ?", clusterOpts)
 				return m.DB.Exec(
-					"ALTER TABLE ? RENAME COLUMN ? TO ?",
+					sQL,
 					clause.Table{Name: stmt.Table},
 					clause.Column{Name: oldName},
 					clause.Column{Name: newName},
