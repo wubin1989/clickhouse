@@ -90,6 +90,7 @@ func (dialector *Dialector) Update(db *gorm.DB) {
 
 					for j := 0; j < 3; j++ {
 						if conn, e := clickhouse.Open(&opts); e == nil {
+							defer conn.Close()
 							if e = conn.Exec(db.Statement.Context, updateSQL, db.Statement.Vars...); e == nil {
 								break
 							}
