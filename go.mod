@@ -1,4 +1,4 @@
-module github.com/wubin1989/driver/clickhouse
+module github.com/wubin1989/clickhouse
 
 go 1.21
 
@@ -7,7 +7,7 @@ toolchain go1.21.1
 require (
 	github.com/ClickHouse/clickhouse-go/v2 v2.23.2
 	github.com/hashicorp/go-version v1.6.0
-	github.com/wubin1989/gorm v0.0.0-20240609151307-f641d0f2ffd1
+	github.com/wubin1989/gorm v0.0.1
 )
 
 require (

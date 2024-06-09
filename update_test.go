@@ -1,7 +1,7 @@
 package clickhouse_test
 
 import (
-	"github.com/wubin1989/driver/clickhouse"
+	"github.com/wubin1989/clickhouse"
 	"github.com/wubin1989/gorm"
 	"github.com/wubin1989/gorm/utils/tests"
 	"regexp"

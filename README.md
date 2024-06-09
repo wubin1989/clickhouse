@@ -13,7 +13,7 @@ package main
 
 import (
 <<<<<<< HEAD
-	"github.com/wubin1989/driver/clickhouse"
+	"github.com/wubin1989/clickhouse"
 	"github.com/wubin1989/gorm"
 =======
 	"gorm.io/driver/clickhouse"
@@ -66,7 +66,7 @@ package main
 import (
   std_ck "github.com/ClickHouse/clickhouse-go/v2"
 <<<<<<< HEAD
-  "github.com/wubin1989/driver/clickhouse"
+  "github.com/wubin1989/clickhouse"
   "github.com/wubin1989/gorm"
 =======
   "gorm.io/driver/clickhouse"
@@ -106,7 +106,7 @@ package main
 
 import (
 <<<<<<< HEAD
-  "github.com/wubin1989/driver/clickhouse"
+  "github.com/wubin1989/clickhouse"
   "github.com/wubin1989/gorm"
 =======
   "gorm.io/driver/clickhouse"
