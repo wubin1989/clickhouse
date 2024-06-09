@@ -1,13 +1,12 @@
 package clickhouse_test
 
 import (
+	"github.com/wubin1989/driver/clickhouse"
+	"github.com/wubin1989/gorm"
 	"log"
 	"math/rand"
 	"os"
 	"time"
-
-	"github.com/wubin1989/driver/clickhouse"
-	"github.com/wubin1989/gorm"
 )
 
 var DB *gorm.DB

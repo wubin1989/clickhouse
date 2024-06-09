@@ -5,13 +5,12 @@ import (
 	"database/sql"
 	"errors"
 	"fmt"
-	"strconv"
-	"strings"
-
 	"github.com/wubin1989/gorm"
 	"github.com/wubin1989/gorm/clause"
 	"github.com/wubin1989/gorm/migrator"
 	"github.com/wubin1989/gorm/schema"
+	"strconv"
+	"strings"
 )
 
 // Errors enumeration

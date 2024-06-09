@@ -12,8 +12,13 @@ You can simply test your connection to your database with the following:
 package main
 
 import (
+<<<<<<< HEAD
 	"github.com/wubin1989/driver/clickhouse"
 	"github.com/wubin1989/gorm"
+=======
+	"gorm.io/driver/clickhouse"
+	"gorm.io/gorm"
+>>>>>>> 065c557faa017e4b7c68dd8eeaced0bbad937403
 )
 
 type User struct {
@@ -60,8 +65,13 @@ package main
 
 import (
   std_ck "github.com/ClickHouse/clickhouse-go/v2"
+<<<<<<< HEAD
   "github.com/wubin1989/driver/clickhouse"
   "github.com/wubin1989/gorm"
+=======
+  "gorm.io/driver/clickhouse"
+  "gorm.io/gorm"
+>>>>>>> 065c557faa017e4b7c68dd8eeaced0bbad937403
 )
 
 sqlDB, err := std_ck.OpenDB(&std_ck.Options{
@@ -95,8 +105,13 @@ func main() {
 package main
 
 import (
+<<<<<<< HEAD
   "github.com/wubin1989/driver/clickhouse"
   "github.com/wubin1989/gorm"
+=======
+  "gorm.io/driver/clickhouse"
+  "gorm.io/gorm"
+>>>>>>> 065c557faa017e4b7c68dd8eeaced0bbad937403
 )
 
 // refer to https://github.com/ClickHouse/clickhouse-go
@@ -118,4 +133,8 @@ func main() {
 }
 ```
 
+<<<<<<< HEAD
 Checkout [https://github.com/wubin1989](https://github.com/wubin1989) for details.
+=======
+Checkout [https://gorm.io](https://gorm.io) for details.
+>>>>>>> 065c557faa017e4b7c68dd8eeaced0bbad937403

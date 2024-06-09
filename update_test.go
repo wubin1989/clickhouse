@@ -1,13 +1,12 @@
 package clickhouse_test
 
 import (
-	"regexp"
-	"testing"
-	"time"
-
 	"github.com/wubin1989/driver/clickhouse"
 	"github.com/wubin1989/gorm"
 	"github.com/wubin1989/gorm/utils/tests"
+	"regexp"
+	"testing"
+	"time"
 )
 
 func TestUpdateLocalTable(t *testing.T) {

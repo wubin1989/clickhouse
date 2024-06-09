@@ -1,10 +1,9 @@
 package clickhouse_test
 
 import (
+	"github.com/wubin1989/gorm/utils/tests"
 	"testing"
 	"time"
-
-	"github.com/wubin1989/gorm/utils/tests"
 )
 
 func TestDelete(t *testing.T) {

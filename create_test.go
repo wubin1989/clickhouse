@@ -1,9 +1,8 @@
 package clickhouse_test
 
 import (
-	"testing"
-
 	"github.com/wubin1989/gorm/utils/tests"
+	"testing"
 )
 
 func TestCreate(t *testing.T) {
