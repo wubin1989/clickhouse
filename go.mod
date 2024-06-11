@@ -7,7 +7,7 @@ toolchain go1.21.1
 require (
 	github.com/ClickHouse/clickhouse-go/v2 v2.23.2
 	github.com/hashicorp/go-version v1.6.0
-	github.com/wubin1989/gorm v0.0.1
+	github.com/wubin1989/gorm v0.0.3
 )
 
 require (
