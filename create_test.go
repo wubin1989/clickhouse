@@ -8,7 +8,10 @@ import (
 )
 
 func TestCreate(t *testing.T) {
-	user := User{ID: 1, Name: "create", FirstName: "zhang", LastName: "jinzhu", Age: 18, Active: true, Salary: 8.8888}
+	user := User{ID: 1, Name: "create", FirstName: "zhang", LastName: "jinzhu", Age: 18, Active: true, Salary: 8.8888, Attrs: map[string]string{
+		"a": "a",
+		"b": "b",
+	}}
 
 	if err := DB.Create(&user).Error; err != nil {
 		t.Fatalf("failed to create user, got error %v", err)

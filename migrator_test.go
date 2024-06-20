@@ -17,6 +17,7 @@ type User struct {
 	Age       int64 `gorm:"type:Nullable(Int64)"`
 	Active    bool
 	Salary    float32
+	Attrs     map[string]string `gorm:"type:Map(String,String);"`
 	CreatedAt time.Time
 	UpdatedAt time.Time
 }
