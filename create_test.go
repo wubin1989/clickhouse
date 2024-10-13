@@ -2,11 +2,15 @@ package clickhouse_test
 
 import (
 	"github.com/wubin1989/gorm/utils/tests"
+	"slices"
 	"testing"
 )
 
 func TestCreate(t *testing.T) {
-	var user = User{ID: 1, Name: "create", FirstName: "zhang", LastName: "jinzhu", Age: 18, Active: true, Salary: 8.8888}
+	user := User{ID: 1, Name: "create", FirstName: "zhang", LastName: "jinzhu", Age: 18, Active: true, Salary: 8.8888, Attrs: map[string]string{
+		"a": "a",
+		"b": "b",
+	}}
 
 	if err := DB.Create(&user).Error; err != nil {
 		t.Fatalf("failed to create user, got error %v", err)
@@ -26,10 +30,19 @@ func TestCreate(t *testing.T) {
 	if err := DB.Raw("select * from users where id = ?", user.ID).Scan(&partialResult).Error; err != nil {
 		t.Fatalf("failed to query partial, got error %v", err)
 	}
+
+	var names []string
+	if err := DB.Select("name").Model(&User{}).Find(&names).Error; err != nil {
+		t.Fatalf("failed to query user, got error %v", err)
+	}
+
+	if !slices.Contains(names, user.Name) {
+		t.Errorf("name should be included in the result")
+	}
 }
 
 func TestBatchCreate(t *testing.T) {
-	var users = []User{
+	users := []User{
 		{ID: 11, Name: "batch_create_1", FirstName: "zhang", LastName: "jinzhu", Age: 18, Active: true, Salary: 6},
 		{ID: 12, Name: "batch_create_2", FirstName: "zhang", LastName: "jinzhu", Age: 18, Active: false, Salary: 6.12},
 		{ID: 13, Name: "batch_create_3", FirstName: "zhang", LastName: "jinzhu", Age: 18, Active: true, Salary: 6.1234},
@@ -54,7 +67,7 @@ func TestBatchCreate(t *testing.T) {
 }
 
 func TestCreateWithMap(t *testing.T) {
-	var user = User{ID: 122, Name: "create2", FirstName: "zhang", LastName: "jinzhu", Age: 18, Active: true, Salary: 6.6666}
+	user := User{ID: 122, Name: "create2", FirstName: "zhang", LastName: "jinzhu", Age: 18, Active: true, Salary: 6.6666}
 
 	if err := DB.Table("users").Create(&map[string]interface{}{
 		"id": user.ID, "name": user.Name, "first_name": user.FirstName, "last_name": user.LastName, "age": user.Age, "active": user.Active, "salary": user.Salary,
